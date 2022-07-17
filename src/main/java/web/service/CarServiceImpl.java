@@ -19,4 +19,10 @@ public class CarServiceImpl implements CarService {
     public List<Car> getCarList() {
         return carDao.getCars();
     }
+
+    public List<Car> getCarList(int count) {
+        List<Car> cars = getCarList();
+        if (count < 5) cars = cars.subList(0, count);
+        return cars;
+    }
 }

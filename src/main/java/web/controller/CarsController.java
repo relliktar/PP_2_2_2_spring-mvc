@@ -21,11 +21,8 @@ public class CarsController {
     }
 
     @GetMapping(value = "/cars")
-    public String printCars(Model model, @RequestParam(required = false) Integer count) {
-        List<Car> cars = carService.getCarList();
-        if (count != null) {
-            if (count < 5) cars = cars.subList(0, count);
-        }
+    public String printCars(Model model, @RequestParam(defaultValue = "10") Integer count) {
+        List<Car> cars = carService.getCarList(count);
         model.addAttribute("cars", cars);
         return "cars";
     }
